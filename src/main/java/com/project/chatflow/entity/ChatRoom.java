@@ -1,4 +1,4 @@
-package entity;
+package com.project.chatflow.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,6 +34,8 @@ public class ChatRoom {
 
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoomParticipant> participants;
+
+    // Getters y Setters
 
 	public Long getId() {
 		return id;
@@ -82,9 +84,13 @@ public class ChatRoom {
 	public void setParticipants(List<RoomParticipant> participants) {
 		this.participants = participants;
 	}
-
-    // Getters y Setters
     
+	@Override
+	public String toString() {
+		return "ChatRoom [id=" + id + ", roomCode=" + roomCode + ", createdAt=" + createdAt + ", expiresAt=" + expiresAt
+				+ ", messages=" + messages + ", participants=" + participants + "]";
+	}
+
 	public ChatRoom() {
 	    // Constructor vacío requerido por JPA
 	}
