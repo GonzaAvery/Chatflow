@@ -1,11 +1,11 @@
-package repository;
+package com.project.chatflow.repository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import entity.ChatRoom;
+import com.project.chatflow.entity.ChatRoom;
 
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long>{
 

@@ -1,4 +1,4 @@
-package entity;
+package com.project.chatflow.entity;
 
 import java.time.LocalDateTime;
 
@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "messages")
-public class Message {
+@Table(name = "room_participants")
+public class RoomParticipant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +24,12 @@ public class Message {
     private ChatRoom chatRoom;
 
     @Column(nullable = false)
-    private String senderName;
+    private String participantName;
 
     @Column(nullable = false)
-    private String content;
+    private LocalDateTime joinedAt = LocalDateTime.now();
 
-    @Column(nullable = false)
-    private LocalDateTime sentAt = LocalDateTime.now();
+    // Getters y Setters
 
 	public Long getId() {
 		return id;
@@ -48,33 +47,29 @@ public class Message {
 		this.chatRoom = chatRoom;
 	}
 
-	public String getSenderName() {
-		return senderName;
+	public String getParticipantName() {
+		return participantName;
 	}
 
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
+	public void setParticipantName(String participantName) {
+		this.participantName = participantName;
 	}
 
-	public String getContent() {
-		return content;
+	public LocalDateTime getJoinedAt() {
+		return joinedAt;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setJoinedAt(LocalDateTime joinedAt) {
+		this.joinedAt = joinedAt;
+	}
+	
+	@Override
+	public String toString() {
+		return "RoomParticipant [id=" + id + ", chatRoom=" + chatRoom + ", participantName=" + participantName
+				+ ", joinedAt=" + joinedAt + "]";
 	}
 
-	public LocalDateTime getSentAt() {
-		return sentAt;
-	}
-
-	public void setSentAt(LocalDateTime sentAt) {
-		this.sentAt = sentAt;
-	}
-
-    // Getters y Setters
-    
-	public Message() {
+	public RoomParticipant() {
 	    // Constructor vacío requerido por JPA
 	}
 }

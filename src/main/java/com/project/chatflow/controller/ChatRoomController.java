@@ -1,4 +1,4 @@
-package controller;
+package com.project.chatflow.controller;
 
 import java.util.Optional;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entity.ChatRoom;
-import service.ChatRoomService;
+import com.project.chatflow.entity.ChatRoom;
+import com.project.chatflow.service.ChatRoomService;
 
 @RestController
 @RequestMapping("/chatrooms")

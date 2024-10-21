@@ -1,4 +1,4 @@
-package service;
+package com.project.chatflow.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,8 +8,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entity.ChatRoom;
-import repository.ChatRoomRepository;
+import com.project.chatflow.entity.ChatRoom;
+import com.project.chatflow.repository.ChatRoomRepository;
 
 @Service
 public class ChatRoomService {
@@ -43,6 +43,6 @@ public class ChatRoomService {
     
     private String generateRoomCode() {
         // Generar un código aleatorio de 32 o 64 caracteres, según tus necesidades
-        return UUID.randomUUID().toString().replace("-", "").substring(0, 32);  // Genera un código de 32 caracteres
+    	return UUID.randomUUID().toString(); // Este código tendrá el formato "123e4567-e89b-12d3-a456-426614174000"
     }
 }
