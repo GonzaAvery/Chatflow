@@ -14,17 +14,21 @@ public class User {
     @Column(nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private LocalDateTime expiresAt;
-    
+
     public User() {
     }
-    
-    public User(String username, LocalDateTime createdAt, LocalDateTime expiresAt) {
+
+    public User(String username, String password, LocalDateTime createdAt, LocalDateTime expiresAt) {
         this.username = username;
+        this.password = password;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
     }
@@ -45,6 +49,14 @@ public class User {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -61,9 +73,9 @@ public class User {
         this.expiresAt = expiresAt;
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", createdAt=" + createdAt + ", expiresAt=" + expiresAt
-				+ "]";
-	}
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", createdAt=" + createdAt + ", expiresAt=" + expiresAt
+                + "]";
+    }
 }

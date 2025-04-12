@@ -21,10 +21,20 @@ public class UserController {
     }
 
     // Endpoint para registrar un usuario
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestParam String username) {
-        User user = userService.createUser(username);
+    @PostMapping("/register")
+    public ResponseEntity<User> createUser(@RequestParam String username, @RequestParam String password) {
+        User user = userService.createUser(username, password);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    // Endpoint para autenticar un usuario
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestParam String username, @RequestParam String password) {
+        Optional<User> user = userService.authenticateUser(username, password);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
     }
 
     // Endpoint para validar si un usuario es válido
@@ -35,8 +45,8 @@ public class UserController {
     }
 
     // (Opcional) Endpoint para listar todos los usuarios (solo para pruebas)
-    /*@GetMapping
+    @GetMapping
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
-    }*/
+    }
 }

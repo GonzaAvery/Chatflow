@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "chat_room")
 public class ChatRoom {
 
 	@Id
@@ -15,15 +16,18 @@ public class ChatRoom {
 
 	@Column(name = "room_code", unique = true, nullable = false)
 	private String roomCode;
-	
+
 	@Column(name = "room_name")
 	private String roomName;
 
-    @Column(name = "created_at")
+	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-    @Column(name = "expires_at")
+	@Column(name = "expires_at")
 	private LocalDateTime expiresAt;
+
+	@Column(name = "last_message_at")
+	private LocalDateTime lastMessageAt;
 
 	public Long getId() {
 		return id;
@@ -57,9 +61,17 @@ public class ChatRoom {
 		this.expiresAt = expiresAt;
 	}
 
+	public LocalDateTime getLastMessageAt() {
+		return lastMessageAt;
+	}
+
+	public void setLastMessageAt(LocalDateTime lastMessageAt) {
+		this.lastMessageAt = lastMessageAt;
+	}
+
 	@Override
 	public String toString() {
 		return "ChatRoom [id=" + id + ", roomCode=" + roomCode + ", createdAt=" + createdAt + ", expiresAt=" + expiresAt
-				+ "]";
+				+ ", lastMessageAt=" + lastMessageAt + "]";
 	}
 }
