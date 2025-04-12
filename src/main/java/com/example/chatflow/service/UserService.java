@@ -19,17 +19,27 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // Crear un nuevo usuario
-    public User createUser(String username) {
+    public User createUser(String username, String password) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expiresAt = now.plusHours(72);
-        User user = new User(username, now, expiresAt);
+        User user = new User(username, password, now, expiresAt);
         return userRepository.save(user);
     }
 
-    // Buscar un usuario por ID
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> authenticateUser(String username, String password) {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getUsername().equals(username) &&
+                        user.getPassword().equals(password) &&
+                        user.getExpiresAt().isAfter(LocalDateTime.now()))
+                .findFirst();
     }
 
     // Verificar si un usuario es válido (no ha expirado)

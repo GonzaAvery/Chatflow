@@ -12,15 +12,18 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "chat_room_id", nullable = false)
 	private ChatRoom chatRoom;
 
-	private String senderName;
+	@Column(name = "sender_name", nullable = false)
+    private String senderName;
 
-	private String Content;
+    @Column(name = "content", nullable = false)
+    private String content;
 
-	private LocalDateTime sentAt;
+    @Column(name = "sent_at", nullable = false)
+    private LocalDateTime sentAt;
 
 	public Long getId() {
 		return id;
@@ -47,11 +50,11 @@ public class Message {
 	}
 
 	public String getContent() {
-		return Content;
+		return content;
 	}
 
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 
 	public LocalDateTime getSentAt() {
@@ -64,7 +67,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", chatRoom=" + chatRoom + ", senderName=" + senderName + ", Content=" + Content
+		return "Message [id=" + id + ", chatRoom=" + chatRoom + ", senderName=" + senderName + ", Content=" + content
 				+ ", sentAt=" + sentAt + "]";
 	}
 }

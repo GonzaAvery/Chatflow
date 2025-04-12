@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     // Buscar usuarios que hayan expirado
-    List<User> findByExpiresAtBefore(LocalDateTime now);
+    List<User> findByExpiresAtBefore(LocalDateTime dateTime);
 
     // Buscar usuario por nombre (opcional, si lo necesitas)
     List<User> findByUsername(String username);
